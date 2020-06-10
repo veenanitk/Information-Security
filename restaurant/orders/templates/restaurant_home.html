@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}Restaurant Details{% endblock %}
+{% block body %}
+    <h2><b>{{restaurant.name}}</b></h2>
+    <h4><b>Manager name:</b> {{restaurant.man_id.user.first_name}} {{restaurant.man_id.user.last_name}}</h3>
+    <div class="container">
+        <div class="row">
+            <div class="card border-primary mb-3" style="max-width: 20rem;">
+              <div class="card-header">Details</div>
+                  <div class="card-body">
+                    <h6 class="card-title"><b>Address:</b> {{ restaurant.address }}</h6>
+                    <h6 class="card-title"><b>City:</b> {{ restaurant.city }}</h6>
+                    <h6 class="card-title"><b>State:</b> {{ restaurant.state }}</h6>
+                    <h6 class="card-title"><b>Country:</b> {{ restaurant.country }}</h6>
+                  </div>
+            </div>
+        </div>
+
+    <form role="form" action="{% url 'place_order' restaurant.pk cust_id%}" method="post" enctype="multipart/form-data">
+
+        <table class="table table-hover">
+        <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Item Name</th>
+      <th scope="col">Cost</th>
+      <th scope="col">Description</th>
+      <th scope="col">Image</th>
+      <th scope="col">Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% csrf_token %}
+
+    {% for item in items %}
+        <tr>
+          <td>{{ item.item_id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.cost }}</td>
+          <td>{{ item.description }}</td>
+          <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{item.pk}}">View this dish</button></td>
+          <td><input type="number" min=0 class="form-control" id="quantity{{item.pk}}" name="quantity{{item.pk}}" placeholder="quantity" style="width:50px;" value=0></td>
+        </tr>
+
+  <!-- Modal -->
+  <div class="modal" id="myModal{{item.pk}}" role="dialog">
+      <div class="modal-dialog" role="document">
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{{item.name}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p><img src="{{item.image.url}}" style="height:200px; width:400px; float:center;"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+  </div>
+        {% endfor %}
+
+  </tbody>
+</table>
+<input type="text" class="form-control" id="bill_id" name="bill_id" placeholder="Bill ID" style="width:100px;">
+<button type="submit" class="btn btn-primary">Place Order</button>
+
+
+      </form>
+
+    </div>
+{% endblock %}

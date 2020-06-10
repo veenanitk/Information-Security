@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Bill Details{% endblock %}
+{% block body %}
+
+     <h3>Bill Details</h3>
+    <div class="container">
+      <br>
+     <table class="table table-hover">
+        <thead>
+    <tr>
+      <th scope="col">Bill ID</th>
+      <th scope="col">Total</th>
+      <th scope="col">View Items</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for bill in bills %}
+        <tr>
+          <td>{{bill.bill_id}}</td>
+          <td>{{bill.total}}</td>
+          <td><a role ="button" class="btn btn-outline-danger" href="{% url 'placed_man' bill.bill_id %}">View Items</a></td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}     

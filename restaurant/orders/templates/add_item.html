@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Add Menu{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <form role="form" action="{% url 'add_item' pk=restaurant.rest_id %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                          <fieldset>
+                            <legend>Enter  details</legend>
+                            <div class="form-group">
+                              <label for="ID">Item ID</label>
+                              <input type="text" class="form-control" id="ID" name="item_id" placeholder="Enter Item ID">
+                            </div>
+                            <div class="form-group">
+                              <label for="name">Name of the Dish</label>
+                              <input type="text" class="form-control" id="Username" name="name" placeholder="Enter name">
+                            </div>
+                            <div class="form-group">
+                              <label for="cost">Cost of the Dish</label>
+                              <input type="text" class="form-control" id="Name1" name="cost" placeholder="Enter cost">
+                            </div>
+                            <div class="form-group">
+                              <label for="description">Description of the Dish</label>
+                              <input type="text" class="form-control" id="Name2" name="description" placeholder="Enter last name">
+                            </div>
+                            <div class="form-group">
+                              <label for="image">Image</label>
+                              <input type="file" class="form-control" id="Email" name="image" placeholder="Enter Image">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add</button>
+                          </fieldset>
+                        </form>
+                        <br>
+                        <a href="{% url 'reg_restaurant_home' restaurant.rest_id %}" class="btn btn-success" role="button" style="padding-right: 20px; padding-left: 20px;">Done</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}View my order{% endblock %}
+{% block body %}
+    <h3>Customer</h3>
+    <div class="container">
+        <div class="row">
+            <div class="card border-secondary mb-3" style="max-width: 20rem;">
+              <div class="card-header">Customer Details</div>
+                  <div class="card-body">
+                    <h6 class="card-title"><b>Name:</b> {{ customer.user.first_name }} {{ customer.user.last_name }}</h6>
+                   
+                  </div>
+            </div>
+        </div>
+     
+       <table class="table table-hover">
+        <thead>
+    <tr>
+      <th scope="col">Bill ID</th>
+      <th scope="col">Restaurant Name</th>
+      <th scope="col">View My Order</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {% for bill in bills %}
+        <tr>
+          <td>{{ bill.bill_id }}</td>
+          <td>{{ bill.rest_id.name }}</td>
+         
+          <td>
+          <a href="{% url 'placed' bill.bill_id %}" class="btn btn-outline-success" role="button">View Order</a>
+          </td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+ </div>  
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}Restaurant Details{% endblock %}
+{% block body %}
+    <h3>{{restaurant.name}}</h3>
+    <div class="container">
+        <div class="row">
+            <div class="card border-primary mb-3" style="max-width: 20rem;">
+              <div class="card-header">Restaurant Details</div>
+                  <div class="card-body">
+                    <img src="{{restaurant.image.url}}" style="height:250px; width:250px; float:center; margin-bottom: 10px;">
+                    <h6 class="card-title"><b>Address:</b> {{ restaurant.address }}</h6>
+                    <h6 class="card-title"><b>City:</b> {{ restaurant.city }}</h6>
+                    <h6 class="card-title"><b>State:</b> {{ restaurant.state }}</h6>
+                    <h6 class="card-title"><b>Country:</b> {{ restaurant.country }}</h6>
+
+                  </div>
+            </div>
+        </div>
+
+        <table class="table table-hover">
+        <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Item Name</th>
+      <th scope="col">Cost</th>
+      <th scope="col">Description</th>
+      <th scope="col">Image</th>
+      <th scope="col">Delete from Menu</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+        <tr>
+          <td>{{ item.item_id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.cost }}</td>
+          <td>{{ item.description }}</td>
+          <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal{{item.pk}}">View this dish</button></td>
+          <td><a href="{% url 'delete_item' item.pk %}" role="button" class="btn btn-danger">Delete</a></td>
+       
+    
+
+
+  <!-- Modal -->
+  <div class="modal" id="myModal{{item.pk}}" role="dialog">
+      <div class="modal-dialog" role="document">
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{{item.name}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p><img src="{{item.image.url}}" style="height:200px; width:400px; float:center;"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+  </div>
+     </tr>
+        {% endfor %}
+  </tbody>
+</table>
+        <a role=button href="{% url 'add_item' restaurant.rest_id %}" class = "btn btn-outline-success" >Add to Menu</a>
+    </div>
+{% endblock %}

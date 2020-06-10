@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Manager home{% endblock %}
+{% block body %}
+    <h3>Manager</h3>
+    <div class="container">
+        <div class="row">
+            <div class="card border-primary mb-3" style="max-width: 20rem;">
+              <div class="card-header">Manager Details</div>
+                  <div class="card-body">
+                    <h6 class="card-title"><b>Name:</b> {{ manager.user.first_name }} {{ manager.user.last_name }}</h6>
+                  </div>
+            </div>
+        </div>
+
+        <table class="table table-hover">
+        <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Restaurant Name</th>
+      <th scope="col">City</th>
+      <th scope="col">State</th>
+      <th scope="col">Country</th>
+      <th scope="col">View Restaurant</th>
+      <th scope="col">View Orders</th>
+      <th scope="col">View Feedback</th>
+      <th scope="col">Delete Restaurant</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for restaurant in restaurants %}
+        <tr>
+          <td>{{ restaurant.rest_id }}</td>
+          <td>{{ restaurant.name }}</td>
+          <td>{{ restaurant.city }}</td>
+          <td>{{ restaurant.state }}</td>
+          <td>{{ restaurant.country }}</td>
+          <td>
+          <a href="{% url 'reg_restaurant_home' restaurant.rest_id %}" class="btn btn-outline-danger" role="button">View</a>
+          </td>
+          <td>
+          <a href="{% url 'restaurant_view_orders' restaurant.rest_id %}" class="btn btn-outline-danger" role="button">View Orders of this Restaurant</a>
+          </td>
+          <td><a href="{% url 'feedback_man' restaurant.rest_id %}" class="btn btn-outline-success" role="button">View Feedback</a></td>
+          <td><a href="{% url 'delete_restaurant' restaurant.rest_id %}" class="btn btn-outline-danger" role="button">Delete</a></td>
+
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+        <a role=button href="{% url 'register_restaurant' manager.man_id %}" class = "btn btn-outline-success" >Add a Restaurant</a> 
+    </div>
+{% endblock %}

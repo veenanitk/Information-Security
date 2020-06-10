@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block body %}
+ 
+    <!-- <h3>Customer</h3>
+    <div class="container">
+        <div class="row">
+            <div class="card border-primary mb-3" style="max-width: 20rem;">
+              <div class="card-header">Cus</div>
+                  <div class="card-body">
+                    <h6 class="card-title"><b>Name:</b> {{ customer.user.first_name }} {{ customer.user.last_name }}</h6>
+                  </div>
+            </div>
+        </div>
+    </div> -->
+ <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+	  <div class="card-header">Customer</div>
+	  <div class="card-body">
+	    <h4 class="card-title"><a class = "btn btn-outline-success" role = "button" href = "{% url 'customer_signup' %}">Signup</a></h4>
+	    <h4 class="card-title"><a class = "btn btn-outline-success" role = "button" href = "{% url 'customer_login' %}">Login</a></h4>
+      </div>
+</div>
+
+
+<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+	  <div class="card-header">Restaurant Owner</div>
+	  <div class="card-body">
+	    <h4 class="card-title"><a class = "btn btn-outline-success" role = "button" href = "{% url 'owner_signup' %}">Signup</a></h4>
+	    <h4 class="card-title"><a class = "btn btn-outline-success" role = "button" href = "{% url 'owner_login' %}">Login</a></h4>
+      </div>
+</div>
+
+<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+	  <div class="card-header">Manager</div>
+	  <div class="card-body">
+	    <h4 class="card-title"><a class = "btn btn-outline-success" role = "button" href = "{% url 'manager_login' %}">Login</a></h4>
+      </div>
+</div>
+
+{% endblock %}

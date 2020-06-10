@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}View my order{% endblock %}
+{% block body %}
+<h3>Feedbacks</h3>
+    <div class="container">
+       <table class="table table-hover">
+        <thead>
+    <tr>
+      <th scope="col">Customer ID</th>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Feedback</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {% for feedback in feedbacks %}
+        <tr>
+          <td>{{ feedback.cust_id.cust_id }}</td>
+          <td>{{ feedback.cust_id.user.first_name }} {{ feedback.cust_id.user.last_name }}</td>
+          <td>{{ feedback.feed_back }}</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+ </div> 
+ {% endblock %} 

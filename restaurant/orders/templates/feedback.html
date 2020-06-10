@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Feedback for Restaurant{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <form role="form" action="{% url 'feedback' restaurant.rest_id customer.cust_id bill.bill_id %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                          <fieldset>
+                            <legend>Help Us Improve</legend>
+                            <div class="form-group">
+                              <input type="text" class="form-control" id="feed_back" name="feed_back" placeholder="Enter Feedback">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                          </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

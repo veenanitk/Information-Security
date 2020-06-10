@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Register a Restaurant{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        
+                        <form role="form" action="{% url 'register_restaurant' pk=manager.man_id %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                          <fieldset>
+                            <legend>Enter Restaurant details</legend>
+                            <div class="form-group">
+                              <label for="ID">ID</label>
+                              <input type="text" class="form-control" id="ID" name="rest_id" placeholder="Enter Restaurant ID">
+                            </div>
+                            <div class="form-group">
+                              <label for="name"> Restaurant Name</label>
+                              <input type="text" class="form-control" id="Username" name="name" placeholder="Enter Restaurant name">
+                            </div>
+                            <div class="form-group">
+                              <label for="address">Address</label>
+                              <input type="text" class="form-control" id="Name1" name="address" placeholder="Enter address">
+                            </div>
+                            <div class="form-group">
+                              <label for="city">City</label>
+                              <input type="text" class="form-control" id="Name2" name="city" placeholder="Enter city">
+                            </div>
+                            <div class="form-group">
+                              <label for="state">State</label>
+                              <input type="text" class="form-control" id="Email" name="state" placeholder="Enter State">
+                            </div>
+                            <div class="form-group">
+                              <label for="country">Country</label>
+                              <input type="text" class="form-control" id="country" name="country" placeholder="Enter country">
+                            </div>
+                            <div class="form-group">
+                              <label for="image">Image</label>
+                              <input type="file" class="form-control" id="image" name="image" placeholder="Enter image">
+                            </div>                            
+                            <button type="submit" class="btn btn-primary">Register</button>
+                          </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
