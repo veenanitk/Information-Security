@@ -15,12 +15,12 @@ from django.contrib.contenttypes.models import ContentType
 def customer_signup(request):
     if request.method == "POST":
         cust_id = request.POST['cust_id']
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
+        fn = request.POST['fn']
+        ln = request.POST['ln']
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
-        user = User(username=username, first_name=first_name, last_name=last_name, email=email)
+        user = User(username=username, fn=fn, ln=ln, email=email)
         user.set_password(password)
         user.save()
         try:
@@ -104,13 +104,13 @@ def owner_login(request):
 def owner_signup(request):
     if request.method == "POST":
         owner_id = request.POST['owner_id']
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
+        fn = request.POST['fn']
+        ln = request.POST['ln']
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
         # permissions = request.POST['permissions']
-        user = User(username=username, first_name=first_name, last_name=last_name, email=email)
+        user = User(username=username, fn=fn, ln=ln, email=email)
         user.set_password(password)
         user.save()
         try:
@@ -144,13 +144,13 @@ def manager_signup(request):
     if request.method == "POST":
         # man_id = request.POST['man_id']
         man_id = request.user.owner.owner_id
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
+        fn = request.POST['fn']
+        ln = request.POST['ln']
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
         # permissions = request.POST['permissions']
-        user = User(username=username, first_name=first_name, last_name=last_name, email=email)
+        user = User(username=username, fn=fn, ln=ln, email=email)
         user.set_password(password)
         user.save()
         try:
